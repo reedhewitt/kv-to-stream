@@ -22,7 +22,7 @@ export default async function kvToStream(kvClient, key, opts = {}){
   if(kvStream && opts.streamHandler){
     if(opts.searchReplace && opts.searchReplace.length){
       // If a searchReplace array is present, pass the stream through streamSearchReplace().
-      return opts.streamHandler(async stream => streamSearchReplace(await stream.pipe(kvStream), opts.searchReplace);
+      return opts.streamHandler(async stream => streamSearchReplace(await stream.pipe(kvStream), opts.searchReplace));
     } else {
       return opts.streamHandler(async stream => await stream.pipe(kvStream));
     }

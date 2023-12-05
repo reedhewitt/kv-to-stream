@@ -1,6 +1,6 @@
 {
   "name": "kv-to-stream",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get a KV value as a stream and return it through a handler, such as Hono's c.stream. Supports search-and-replace.",
   "main": "index.js",
   "scripts": {
