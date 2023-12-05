@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/reedhewitt/kv-to-stream/issues"
   },
-  "homepage": "https://github.com/reedhewitt/kv-to-stream#readme"
+  "homepage": "https://github.com/reedhewitt/kv-to-stream#readme",
+  "dependencies": {
+    "ext-to-mime": "github:reedhewitt/ext-to-mime",
+    "stream-search-replace": "github:reedhewitt/stream-search-replace"
+  }
 }
