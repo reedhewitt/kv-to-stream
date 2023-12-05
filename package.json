@@ -1,0 +1,19 @@
+{
+  "name": "kv-to-stream",
+  "version": "1.0.0",
+  "description": "Get a KV value as a stream and return it through a handler, such as Hono's c.stream. Supports search-and-replace.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reedhewitt/kv-to-stream.git"
+  },
+  "author": "Reed Hewitt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/reedhewitt/kv-to-stream/issues"
+  },
+  "homepage": "https://github.com/reedhewitt/kv-to-stream#readme"
+}
