@@ -1,9 +1,9 @@
 import extToMime from 'ext-to-mime';
-import streamSearchReplace from 'stream-search-replace';
+import StreamSearchReplace from 'stream-search-replace';
 
 export default async function kvToStream(kvClient, key, opts = {}){
   const defaults = {
-    streamHandler: null,
+    streamHandler: null, // Currently supports Hono's c.stream() method.
     emptyHandler: null,
     headerHandler: null,
     ext: null,
@@ -20,12 +20,18 @@ export default async function kvToStream(kvClient, key, opts = {}){
   const kvStream = await kvClient.get(key, {type: 'stream'});
 
   if(kvStream && opts.streamHandler){
+    let finalStream;
+    
     if(opts.searchReplace && opts.searchReplace.length){
       // If a searchReplace array is present, pass the stream through streamSearchReplace().
-      return opts.streamHandler(async stream => streamSearchReplace(await stream.pipe(kvStream), opts.searchReplace));
+      const streamSearchReplace = new StreamSearchReplace(opts.searchReplace);
+      finalStream = kvStream.pipeThrough(streamSearchReplace);
     } else {
-      return opts.streamHandler(async stream => await stream.pipe(kvStream));
+      finalStream = kvStream;
     }
+    
+    const streamCallback = async stream => await stream.pipe(finalStream);
+    return opts.streamHandler(streamCallback);
   } else if(opts.emptyHandler){
     return opts.emptyHandler('');
   }
